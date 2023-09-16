@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mobile Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            color: #ff9500;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            color: #333;
+            font-size: 18px;
+        }
+
+        select,
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Reduce the width of these input elements */
+        #model,
+        #year,
+        #futureModel {
+            width: calc(100% - 16px);
+            /* Adjust the value as needed */
+        }
+
+        input[type="submit"] {
+            background-color: #ff9500;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ff7100;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 24px;
+            background-color: #ff9500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff7100;
+        }
+
+        #storedDataContainer {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            width: 100%;
+            /* Set to 100% to take full width of the container */
+        }
+
+        hr {
+            margin: 10px 0;
+            border-color: #ccc;
+            width: 100%;
+            /* Set to 100% to take full width of the container */
+        }
+
+        /* Add a password modal style */
+        #passwordModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+        }
+
+        #passwordForm {
+            background-color: #fff;
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #passwordForm label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #passwordForm input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        #passwordForm input[type="submit"] {
+            background-color: #ff9500;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        #passwordForm input[type="submit"]:hover {
+            background-color: #ff7100;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Mobile Information</h1>
+        <form id="mobileForm">
+            <label for="brand">Select Brand:</label>
+            <select id="brand" name="brand">
+
+                <option value="Samsung">Samsung</option>
+                <option value="Xiaomi">Xiaomi (Mi)</option>
+                <option value="Oppo">Oppo</option>
+                <option value="Vivo">Vivo</option>
+                <option value="Realme">Realme</option>
+                <option value="OnePlus">OnePlus</option>
+                <option value="Motorola">Motorola</option>
+                <option value="Nokia">Nokia</option>
+                <option value="Asus">Asus</option>
+                <option value="Lava">Lava</option>
+                <option value="Micromax">Micromax</option>
+                <option value="Infinix">Infinix</option>
+                <option value="iQOO">iQOO</option>
+                <option value="Google">Google (Pixel)</option>
+                <option value="Apple">Apple (iPhone)</option>
+                <option value="Sony">Sony</option>
+                <option value="LG">LG</option>
+                <option value="HTC">HTC</option>
+                <option value="Lenovo">Lenovo</option>
+                <option value="Honor">Honor</option>
+                <option value="Poco">Poco</option>
+                <option value="ZTE">ZTE</option>
+                <option value="InFocus">InFocus</option>
+                <option value="BlackBerry">BlackBerry</option>
+                <option value="Nubia">Nubia</option>
+                <option value="Meizu">Meizu</option>
+                <option value="Vox">Vox</option>
+                <option value="Karbonn">Karbonn</option>
+                <option value="Gionee">Gionee</option>
+                <option value="Coolpad">Coolpad</option>
+                <option value="Panasonic">Panasonic</option>
+                <option value="Tecno">Tecno</option>
+                <option value="Itel">Itel</option>
+                <option value="Mobiistar">Mobiistar</option>
+                <option value="HMD Global">HMD Global (Nokia)</option>
+                <option value="Black Shark">Black Shark</option>
+                <option value="POCO X">POCO X</option>
+                <option value="Vivo X">Vivo X</option>
+                <option value="Redmi">Redmi</option>
+                <option value="Infinix Zero">Infinix Zero</option>
+                <option value="POCO C">POCO C</option>
+                <option value="Oppo F">Oppo F</option>
+                <option value="Nokia G">Nokia G</option>
+                <option value="Lemon">Lemon</option>
+                <option value="Intex">Intex</option>
+                <option value="Swipe">Swipe</option>
+                <option value="Spice">Spice</option>
+                <option value="Celkon">Celkon</option>
+                <option value="Kult">Kult</option>
+                <option value="Obi Worldphone">Obi Worldphone</option>
+                <option value="Jivi">Jivi</option>
+                <option value="Aqua">Aqua</option>
+                <option value="Ziox">Ziox</option>
+                <option value="Videocon">Videocon</option>
+                <option value="TCL">TCL</option>
+                <option value="Innjoo">Innjoo</option>
+                <option value="Comio">Comio</option>
+                <option value="Infinix Hot">Infinix Hot</option>
+                <option value="Nokia X">Nokia X</option>
+                <option value="YU">YU</option>
+                <option value="Xolo">Xolo</option>
+                <option value="Essential">Essential</option>
+                <option value="Cat">Cat</option>
+                <option value="Meiigoo">Meiigoo</option>
+                <option value="Maze">Maze</option>
+                <option value="Blackview">Blackview</option>
+                <option value="Energizer">Energizer</option>
+                <option value="Gigaset">Gigaset</option>
+                <option value="Razer">Razer</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Alcatel">Alcatel</option>
+                <option value="Nodis">Nodis</option>
+                <option value="Kodak">Kodak</option>
+                <option value="iVoomi">iVoomi</option>
+                <option value="Moto">Moto</option>
+                <option value="Palm">Palm</option>
+                <option value="Vodafone">Vodafone</option>
+                <option value="Wiko">Wiko</option>
+                <option value="Yota">Yota</option>
+                <option value="LeEco">LeEco</option>
+                <option value="Phicomm">Phicomm</option>
+                <option value="Jolla">Jolla</option>
+                <option value="Wileyfox">Wileyfox</option>
+                <option value="Fairphone">Fairphone</option>
+                <option value="Sirin Labs">Sirin Labs</option>
+                <option value="Shift">Shift</option>
+                <option value="Saygus">Saygus</option>
+                <option value="Smartisan">Smartisan</option>
+                <option value="Sugar">Sugar</option>
+                <option value="Swiss">Swiss</option>
+                <option value="Symphony">Symphony</option>
+                <option value="Cubot">Cubot</option>
+                <option value="Doogee">Doogee</option>
+                <option value="Ulefone">Ulefone</option>
+                <option value="Black Fox">Black Fox</option>
+                <option value="Vernee">Vernee</option>
+                <option value="Caterpillar">Caterpillar</option>
+                <option value="Nomu">Nomu</option>
+                <option value="Hydrogen">Hydrogen</option>
+                <option value="Cyrus">Cyrus</option>
+                <option value="Wiggle">Wiggle</option>
+                <option value="Energy Sistem">Energy Sistem</option>
+                <option value="Gretel">Gretel</option>
+                <option value="Plum">Plum</option>
+                <option value="Vertex">Vertex</option>
+                <option value="XGODY">XGODY</option>
+                <option value="Zebra">Zebra</option>
+                <option value="Elephone">Elephone</option>
+                <option value="Bluboo">Bluboo</option>
+                <option value="HomTom">HomTom</option>
+                <option value="Oukitel">Oukitel</option>
+                <option value="AGM">AGM</option>
+                <option value="Blackview">Blackview</option>
+                <option value="UMIDIGI">UMIDIGI</option>
+                <option value="VKworld">VKworld</option>
+                <option value="Zopo">Zopo</option>
+                <option value="UmiDigi">UmiDigi</option>
+                <option value="Leagoo">Leagoo</option>
+                <option value="Maze">Maze</option>
+                <option value="Cubot">Cubot</option>
+                <option value="Doogee">Doogee</option>
+                <option value="Ulefone">Ulefone</option>
+                <option value="Black Fox">Black Fox</option>
+                <option value="Vernee">Vernee</option>
+                <option value="Caterpillar">Caterpillar</option>
+                <option value="Nomu">Nomu</option>
+                <option value="Hydrogen">Hydrogen</option>
+                <option value="Cyrus">Cyrus</option>
+                <option value="Wiggle">Wiggle</option>
+                <option value="Energy Sistem">Energy Sistem</option>
+                <option value="Gretel">Gretel</option>
+                <option value="Plum">Plum</option>
+                <option value="Vertex">Vertex</option>
+                <option value="XGODY">XGODY</option>
+                <option value="Zebra">Zebra</option>
+                <option value="Elephone">Elephone</option>
+                <option value="Bluboo">Bluboo</option>
+                <option value="HomTom">HomTom</option>
+                <option value="Oukitel">Oukitel</option>
+                <option value="AGM">AGM</option>
+                <option value="Blackview">Blackview</option>
+                <option value="UMIDIGI">UMIDIGI</option>
+                <option value="VKworld">VKworld</option>
+                <option value="Zopo">Zopo</option>
+                <option value="UmiDigi">UmiDigi</option>
+                <option value="Leagoo">Leagoo</option>
+                <option value="Infinix">Infinix</option>
+                <option value="ZTE">ZTE</option>
+                <option value="Meizu">Meizu</option>
+                <option value="Vox">Vox</option>
+                <option value="Karbonn">Karbonn</option>
+                <option value="Gionee">Gionee</option>
+                <option value="Coolpad">Coolpad</option>
+                <option value="Panasonic">Panasonic</option>
+                <option value="Tecno">Tecno</option>
+                <option value="Itel">Itel</option>
+                <option value="Mobiistar">Mobiistar</option>
+                <option value="HMD Global">HMD Global (Nokia)</option>
+                <option value="Black Shark">Black Shark</option>
+                <option value="POCO X">POCO X</option>
+                <option value="Vivo X">Vivo X</option>
+                <option value="Redmi">Redmi</option>
+                <option value="Infinix Zero">Infinix Zero</option>
+                <option value="POCO C">POCO C</option>
+                <option value="Oppo F">Oppo F</option>
+                <option value="Nokia G">Nokia G</option>
+                <option value="Lemon">Lemon</option>
+                <option value="Intex">Intex</option>
+                <option value="Swipe">Swipe</option>
+                <option value="Spice">Spice</option>
+                <option value="Celkon">Celkon</option>
+                <option value="Kult">Kult</option>
+                <option value="Obi Worldphone">Obi Worldphone</option>
+                <option value="Jivi">Jivi</option>
+                <option value="Aqua">Aqua</option>
+                <option value="Ziox">Ziox</option>
+                <option value="Videocon">Videocon</option>
+                <option value="TCL">TCL</option>
+                <option value="Innjoo">Innjoo</option>
+                <option value="Comio">Comio</option>
+                <option value="Infinix Hot">Infinix Hot</option>
+                <option value="Nokia X">Nokia X</option>
+                <option value="YU">YU</option>
+                <option value="Xolo">Xolo</option>
+                <option value="Essential">Essential</option>
+                <option value="Cat">Cat</option>
+                <option value="Meiigoo">Meiigoo</option>
+                <option value="Maze">Maze</option>
+                <option value="Blackview">Blackview</option>
+                <option value="Energizer">Energizer</option>
+                <option value="Gigaset">Gigaset</option>
+                <option value="Razer">Razer</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Alcatel">Alcatel</option>
+                <option value="Nodis">Nodis</option>
+                <option value="Kodak">Kodak</option>
+                <option value="iVoomi">iVoomi</option>
+                <option value="Moto">Moto</option>
+                <option value="Palm">Palm</option>
+                <option value="Vodafone">Vodafone</option>
+                <option value="Wiko">Wiko</option>
+                <option value="Yota">Yota</option>
+                <option value="LeEco">LeEco</option>
+                <option value="Phicomm">Phicomm</option>
+                <option value="Jolla">Jolla</option>
+                <option value="Wileyfox">Wileyfox</option>
+                <option value="Fairphone">Fairphone</option>
+                <option value="Sirin Labs">Sirin Labs</option>
+                <option value="Shift">Shift</option>
+                <option value="Saygus">Saygus</option>
+                <option value="Smartisan">Smartisan</option>
+                <option value="Sugar">Sugar</option>
+                <option value="Swiss">Swiss</option>
+                <option value="Symphony">Symphony</option>
+                <option value="Cubot">Cubot</option>
+                <option value="Doogee">Doogee</option>
+                <option value="Ulefone">Ulefone</option>
+                <option value="Black Fox">Black Fox</option>
+                <option value="Vernee">Vernee</option>
+                <option value="Caterpillar">Caterpillar</option>
+                <option value="Nomu">Nomu</option>
+                <option value="Hydrogen">Hydrogen</option>
+                <option value="Cyrus">Cyrus</option>
+                <option value="Wiggle">Wiggle</option>
+                <option value="Energy Sistem">Energy Sistem</option>
+                <option value="Gretel">Gretel</option>
+                <option value="Plum">Plum</option>
+                <option value="Vertex">Vertex</option>
+                <option value="XGODY">XGODY</option>
+                <option value="Zebra">Zebra</option>
+                <option value="Elephone">Elephone</option>
+                <option value="Bluboo">Bluboo</option>
+                <option value="HomTom">HomTom</option>
+                <option value="Oukitel">Oukitel</option>
+                <option value="AGM">AGM</option>
+                <option value="Blackview">Blackview</option>
+                <option value="UMIDIGI">UMIDIGI</option>
+                <option value="VKworld">VKworld</option>
+                <option value="Zopo">Zopo</option>
+                <option value="UmiDigi">UmiDigi</option>
+                <option value="Leagoo">Leagoo</option>
+                <option value="Maze">Maze</option>
+                <option value="Cubot">Cubot</option>
+                <option value="Doogee">Doogee</option>
+                <option value="Ulefone">Ulefone</option>
+                <option value="Black Fox">Black Fox</option>
+                <option value="Vernee">Vernee</option>
+                <option value="Caterpillar">Caterpillar</option>
+                <option value="Nomu">Nomu</option>
+                <option value="Hydrogen">Hydrogen</option>
+                <option value="Cyrus">Cyrus</option>
+                <option value="Wiggle">Wiggle</option>
+                <option value="Energy Sistem">Energy Sistem</option>
+                <option value="Gretel">Gretel</option>
+                <option value="Plum">Plum</option>
+                <option value="Vertex">Vertex</option>
+                <option value="XGODY">XGODY</option>
+                <option value="Zebra">Zebra</option>
+                <option value="Elephone">Elephone</option>
+                <option value="Bluboo">Bluboo</option>
+                <option value="HomTom">HomTom</option>
+                <option value="Oukitel">Oukitel</option>
+                <option value="AGM">AGM</option>
+                <option value="Blackview">Blackview</option>
+                <option value="UMIDIGI">UMIDIGI</option>
+                <option value="VKworld">VKworld</option>
+                <option value="Zopo">Zopo</option>
+                <option value="UmiDigi">UmiDigi</option>
+                <option value="Leagoo">Leagoo</option>
+                <option value="Infinix">Infinix</option>
+                <option value="ZTE">ZTE</option>
+                <option value="Meizu">Meizu</option>
+                <option value="Vox">Vox</option>
+                <option value="Karbonn">Karbonn</option>
+                <option value="Gionee">Gionee</option>
+                <option value="Coolpad">Coolpad</option>
+                <option value="Panasonic">Panasonic</option>
+                <option value="Tecno">Tecno</option>
+                <option value="Itel">Itel</option>
+                <option value="Mobiistar">Mobiistar</option>
+                <option value="HMD Global">HMD Global (Nokia)</option>
+                <option value="Black Shark">Black Shark</option>
+                <option value="POCO X">POCO X</option>
+                <option value="Vivo X">Vivo X</option>
+                <option value="Redmi">Redmi</option>
+                <option value="Infinix Zero">Infinix Zero</option>
+                <option value="POCO C">POCO C</option>
+                <option value="Oppo F">Oppo F</option>
+                <option value="Nokia G">Nokia G</option>
+                <option value="Lemon">Lemon</option>
+                <option value="Intex">Intex</option>
+                <option value="Swipe">Swipe</option>
+                <option value="Spice">Spice</option>
+                <option value="Celkon">Celkon</option>
+                <option value="Kult">Kult</option>
+                <option value="Obi Worldphone">Obi Worldphone</option>
+                <option value="Jivi">Jivi</option>
+                <option value="Aqua">Aqua</option>
+                <option value="Ziox">Ziox</option>
+                <option value="Videocon">Videocon</option>
+                <option value="TCL">TCL</option>
+                <option value="Innjoo">Innjoo</option>
+                <option value="Comio">Comio</option>
+                <option value="Infinix Hot">Infinix Hot</option>
+                <option value="Nokia X">Nokia X</option>
+                <option value="YU">YU</option>
+                <option value="Xolo">Xolo</option>
+                <option value="Essential">Essential</option>
+                <option value="Cat">Cat</option>
+                <option value="Meiigoo">Meiigoo</option>
+                <option value="Maze">Maze</option>
+                <option value="Blackview">Blackview</option>
+                <option value="Energizer">Energizer</option>
+                <option value="Gigaset">Gigaset</option>
+                <option value="Razer">Razer</option>
+                <option value="Land Rover">Land Rover</option>
+                <option value="Alcatel">Alcatel</option>
+                <option value="Nodis">Nodis</option>
+                <option value="Kodak">Kodak</option>
+                <option value="iVoomi">iVoomi</option>
+                <option value="Moto">Moto</option>
+                <option value="Palm">Palm</option>
+                <option value="Vodafone">Vodafone</option>
+                <option value="Wiko">Wiko</option>
+                <option value="Yota">Yota</option>
+                <option value="LeEco">LeEco</option>
+                <option value="Phicomm">Phicomm</option>
+                <option value="Jolla">Jolla</option>
+                <option value="Wileyfox">Wileyfox</option>
+                <option value="Fairphone">Fairphone</option>
+                <option value="Sirin Labs">Sirin Labs</option>
+                <option value="Shift">Shift</option>
+                <option value="Saygus">Saygus</option>
+                <option value="Smartisan">Smartisan</option>
+                <option value="Sugar">Sugar</option>
+                <option value="Swiss">Swiss</option>
+                <option value="Symphony">Symphony</option>
+                <option value="Cubot">Cubot</option>
+                <option value="Doogee">Doogee</option>
+                <option value="Ulefone">Ulefone</option>
+                <option value="Black Fox">Black Fox</option>
+                <option value="Vernee">Vernee</option>
+                <option value="Caterpillar">Caterpillar</option>
+                <option value="Nomu">Nomu</option>
+                <option value="Hydrogen">Hydrogen</option>
+                <option value="Cyrus">Cyrus</option>
+                <option value="Wiggle">Wiggle</option>
+                <option value="Energy Sistem">Energy Sistem</option>
+                <option value="Gretel">Gretel</option>
+                <option value="Plum">Plum</option>
+                <option value="Vertex">Vertex</option>
+                <option value="XGODY">XGODY</option>
+                <option value="Zebra">Zebra</option>
+                <option value="Elephone">Elephone</option>
+                <option value="Bluboo">Bluboo</option>
+                <option value="HomTom">HomTom</option>
+                <option value="Oukitel">Oukitel</option>
+                <option value="AGM">AGM</option>
+                <option value="Blackview">Blackview</option>
+                <option value="UMIDIGI">UMIDIGI</option>
+                <option value="VKworld">VKworld</option>
+                <option value="Zopo">Zopo</option>
+                <option value="UmiDigi">UmiDigi</option>
+                <option value="Leagoo">Leagoo</option>
+                <option value="Maze">Maze</option>
+                <option value="Cubot">Cubot</option>
+                <option value="Doogee">Doogee</option>
+                <option value="Ulefone">Ulefone</option>
+                <option value="Black Fox">Black Fox</option>
+                <option value="Vernee">Vernee</option>
+                <option value="Caterpillar">Caterpillar</option>
+                <option value="Nomu">Nomu</option>
+                <option value="Hydrogen">Hydrogen</option>
+                <option value="Cyrus">Cyrus</option>
+                <option value="Wiggle">Wiggle</option>
+                <option value="Energy Sistem">Energy Sistem</option>
+                <option value="Gretel">Gretel</option>
+                <option value="Plum">Plum</option>
+                <option value="Vertex">Vertex</option>
+                <option value="XGODY">XGODY</option>
+                <option value="Zebra">Zebra</option>
+                <option value="Elephone">Elephone</option>
+                <option value="Bluboo">Bluboo</option>
+                <option value="HomTom">HomTom</option>
+                <option value="Oukitel">Oukitel</option>
+                <option value="AGM">AGM</option>
+                <option value="Blackview">Blackview</option>
+                <option value="UMIDIGI">UMIDIGI</option>
+                <option value="VKworld">VKworld</option>
+                <option value="Zopo">Zopo</option>
+                <option value="UmiDigi">UmiDigi</option>
+                <option value="Leagoo">Leagoo</option>
+                <!-- Add more brand options here -->
+            </select>
+            <label for="model">Model:</label>
+            <input type="text" id="model" name="model">
+            <label for="year">Year of Usage:</label>
+            <input type="number" id="year" name="year">
+            <label for="futureModel">Future Model:</label>
+            <input type="text" id="futureModel" name="futureModel">
+            <input type="submit" value="Submit">
+        </form>
+        <div id="storedDataContainer"></div> <!-- Moved this to display data under the form -->
+        <hr> <!-- Added an HR to separate form and data -->
+        <button id="accessDataButton">Access Data</button>
+    </div>
+
+    <!-- Add a password modal -->
+    <div id="passwordModal">
+        <form id="passwordForm">
+            <h2>Enter Password</h2>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const mobileForm = document.getElementById("mobileForm");
+            const accessDataButton = document.getElementById("accessDataButton");
+            const passwordModal = document.getElementById("passwordModal");
+            const passwordForm = document.getElementById("passwordForm");
+            const ownerPassword = "mishalp789"; // Replace with your password
+            const storedDataKey = "mobileData";
+            let mobileDataArray = [];
+
+            mobileForm.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                const brand = document.getElementById("brand").value;
+                const model = document.getElementById("model").value;
+                const year = document.getElementById("year").value;
+                const futureModel = document.getElementById("futureModel").value;
+
+                const mobileData = {
+                    brand,
+                    model,
+                    year,
+                    futureModel,
+                };
+
+                mobileDataArray.push(mobileData);
+
+                mobileForm.reset();
+
+                localStorage.setItem(storedDataKey, JSON.stringify(mobileDataArray));
+                alert("Data has been stored.");
+            });
+
+            accessDataButton.addEventListener("click", function () {
+                const password = prompt("Enter password to access data:");
+                if (password === ownerPassword) {
+                    const storedData = JSON.parse(localStorage.getItem(storedDataKey));
+                    if (storedData) {
+                        displayStoredData(storedData);
+                    } else {
+                        alert("No data found.");
+                    }
+                } else {
+                    alert("Incorrect password. Access denied.");
+                }
+            });
+
+            function displayStoredData(data) {
+                const dataContainer = document.getElementById("storedDataContainer");
+                dataContainer.innerHTML = "<h2>Stored Mobile Data</h2>";
+
+                data.forEach((item, index) => {
+                    dataContainer.innerHTML += `
+                        <p><strong>Set ${index + 1}:</strong></p>
+                        <p><strong>Brand:</strong> ${item.brand}</p>
+                        <p><strong>Model:</strong> ${item.model}</p>
+                        <p><strong>Year of Usage:</strong> ${item.year}</p>
+                        <p><strong>Future Model:</strong> ${item.futureModel}</p>
+                        <hr>`;
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
